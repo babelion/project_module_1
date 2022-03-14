@@ -1,3 +1,5 @@
+'use strict';
+
 let numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?');
 
 let personalMovieDB = {
@@ -8,12 +10,28 @@ let personalMovieDB = {
     privat: false
 };
 
-let title_1 = prompt('Один из последних просмотренных фильмов?'),
-    score_1 = prompt('На сколько оцените его?'),
-    title_2 = prompt('Один из последних просмотренных фильмов?'),
-    score_2 = prompt('На сколько оцените его?');
+if (personalMovieDB.count < 10) {
+    alert('Просмотрено довольно мало фильмов');
+} else if (personalMovieDB.count <= 30) {
+    alert('Вы классический зритель');
+} else if (personalMovieDB.count > 30) {
+    alert('Вы киноман');
+} else {
+    alert('Произошла ошибка');
+}
 
 
-personalMovieDB.movies[title_1] = score_1;
-personalMovieDB.movies[title_2] = score_2;
+let title = '',
+    score = '';
+for (let i = 0; i < 2; i++) {
+    title = prompt('Один из последних просмотренных фильмов?');
+    score = prompt('На сколько оцените его?');
+    if ( (title !='' || score =='') && (title.length < 50) && (title != null || score != null) ) {
+        personalMovieDB.movies[title] = score;
+        alert('done');
+    } else {
+        alert('error');
+        i--;
+    }
+} 
 
